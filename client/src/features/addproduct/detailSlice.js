@@ -5,11 +5,14 @@ export const fetchUserDetail = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     let token = localStorage.getItem("userToken");
     if (token) {
-      let response = await fetch("http://localhost:5000/details", {
-        headers: {
-          Authorization: JSON.parse(localStorage.getItem("userToken")),
-        },
-      });
+      let response = await fetch(
+        `${import.meta.env.VITE_WEBSITE_BACKEND_URL}details`,
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("userToken")),
+          },
+        }
+      );
       try {
         let result = await response.json();
         return result;

@@ -8,14 +8,17 @@ const Cartcards = ({ data, geDeletedProductResponse }) => {
   let dispatch = useDispatch();
   const [count, setCount] = useState(1);
   let deleteProduct = async () => {
-    let response = await fetch("http://localhost:5000/delete", {
-      method: "DELETE",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json",
-        Authorization: JSON.parse(localStorage.getItem("userToken")),
-      },
-    });
+    let response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}delete`,
+      {
+        method: "DELETE",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json",
+          Authorization: JSON.parse(localStorage.getItem("userToken")),
+        },
+      }
+    );
     let result = await response.json();
     geDeletedProductResponse(result.message);
   };

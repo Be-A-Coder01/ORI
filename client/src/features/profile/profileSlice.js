@@ -5,11 +5,14 @@ export const getprofiledetail = createAsyncThunk(
   async (data, rejectwithvalue) => {
     let token = await localStorage.getItem("userToken");
     if (token) {
-      let response = await fetch("http://localhost:5000/profile", {
-        headers: {
-          Authorization: JSON.parse(localStorage.getItem("userToken")),
-        },
-      });
+      let response = await fetch(
+        `${import.meta.env.VITE_WEBSITE_BACKEND_URL}profile`,
+        {
+          headers: {
+            Authorization: JSON.parse(localStorage.getItem("userToken")),
+          },
+        }
+      );
       try {
         let result = await response.json();
         return result;

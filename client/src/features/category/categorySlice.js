@@ -3,7 +3,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fashions = createAsyncThunk(
   "fashions",
   async (data, { rejectWithValue }) => {
-    let response = await fetch("http://localhost:5000/fashions");
+    let response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}fashions`
+    );
     try {
       let result = await response.json();
       return result;
@@ -14,7 +16,7 @@ export const fashions = createAsyncThunk(
 );
 
 export const bags = createAsyncThunk("bags", async (data, rejectWithValue) => {
-  let response = await fetch("http://localhost:5000/bags");
+  let response = await fetch(`${import.meta.env.VITE_WEBSITE_BACKEND_URL}bags`);
   try {
     let result = await response.json();
     return result;
@@ -26,7 +28,9 @@ export const bags = createAsyncThunk("bags", async (data, rejectWithValue) => {
 export const shoes = createAsyncThunk(
   "shoes",
   async (data, rejectWithValue) => {
-    let response = await fetch("http://localhost:5000/shoes");
+    let response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}shoes`
+    );
     try {
       let result = await response.json();
       return result;
@@ -39,7 +43,9 @@ export const shoes = createAsyncThunk(
 export const electronicdevices = createAsyncThunk(
   "electronicdevices",
   async (data, rejectWithValue) => {
-    let response = await fetch("http://localhost:5000/electronicdevices");
+    let response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}electronicdevices`
+    );
     try {
       let result = await response.json();
       return result;
@@ -52,7 +58,9 @@ export const electronicdevices = createAsyncThunk(
 export const coesmetics = createAsyncThunk(
   "coesmetics",
   async (data, rejectWithValue) => {
-    let response = await fetch("http://localhost:5000/coesmetics");
+    let response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}coesmetics`
+    );
     try {
       let result = await response.json();
       return result;
@@ -65,12 +73,15 @@ export const coesmetics = createAsyncThunk(
 export const likedProducts = createAsyncThunk(
   "likedProducts",
   async (data, rejectWithValue) => {
-    let response = await fetch("http://localhost:5000/likedProducts", {
-      headers: {
-        "Content-type": "application/json",
-        Authorization: JSON.parse(localStorage.getItem("userToken")),
-      },
-    });
+    let response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}likedProducts`,
+      {
+        headers: {
+          "Content-type": "application/json",
+          Authorization: JSON.parse(localStorage.getItem("userToken")),
+        },
+      }
+    );
     try {
       let result = await response.json();
       return result;

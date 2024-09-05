@@ -48,11 +48,14 @@ const Cart = () => {
       "Content-Type": "application/json",
     };
 
-    const response = await fetch("http://localhost:5000/payment", {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: headers,
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}payment`,
+      {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: headers,
+      }
+    );
 
     const session = await response.json();
     const result = stripe.redirectToCheckout({

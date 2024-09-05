@@ -5,14 +5,17 @@ export const fetchaddproduct = createAsyncThunk(
   async (data, rejectWithValue) => {
     let token = await localStorage.getItem("userToken");
     if (token) {
-      let response = await fetch("http://localhost:5000/addproduct", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-type": "application/json",
-          Authorization: JSON.parse(localStorage.getItem("userToken")),
-        },
-      });
+      let response = await fetch(
+        `${import.meta.env.VITE_WEBSITE_BACKEND_URL}addproduct`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-type": "application/json",
+            Authorization: JSON.parse(localStorage.getItem("userToken")),
+          },
+        }
+      );
 
       const result = await response.json();
       return result;

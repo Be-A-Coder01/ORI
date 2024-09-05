@@ -16,6 +16,7 @@ const Product = () => {
     dispatch(fetchUserDetail());
     setState(1);
   }, []);
+  // console.log();
 
   return (
     <>

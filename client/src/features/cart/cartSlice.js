@@ -3,11 +3,14 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchProductFromCart = createAsyncThunk(
   "fetchProductFromCart",
   async (data, { rejectWithValue }) => {
-    let response = await fetch("http://localhost:5000/cart", {
-      headers: {
-        Authorization: JSON.parse(localStorage.getItem("userToken")),
-      },
-    });
+    let response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}cart`,
+      {
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("userToken")),
+        },
+      }
+    );
     try {
       let result = await response.json();
       return result;

@@ -5,13 +5,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const createUser = createAsyncThunk(
   "createUser",
   async (data, rejectwithvalue) => {
-    let response = await fetch("http://localhost:5000/signup", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+    let response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}signup`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
 
     try {
       const result = response.json();
@@ -28,13 +31,16 @@ export const loginUser = createAsyncThunk(
   "loginUser",
   async (data, rejectwithvalue) => {
     console.log(data, "inslice");
-    let response = await fetch("http://localhost:5000/login", {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-type": "application/json",
-      },
-    });
+    let response = await fetch(
+      `${import.meta.env.VITE_WEBSITE_BACKEND_URL}login`,
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    );
 
     try {
       const result = await response.json();

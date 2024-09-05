@@ -19,14 +19,17 @@ const Cards = ({ productDetails, userData }) => {
     console.log(value, "card");
     let token = localStorage.getItem("userToken");
     if (token) {
-      let response = await fetch("http://localhost:5000/like", {
-        method: "POST",
-        body: JSON.stringify(productDetails),
-        headers: {
-          "Content-type": "application/json",
-          Authorization: JSON.parse(localStorage.getItem("userToken")),
-        },
-      });
+      let response = await fetch(
+        `${import.meta.env.VITE_WEBSITE_BACKEND_URL}like`,
+        {
+          method: "POST",
+          body: JSON.stringify(productDetails),
+          headers: {
+            "Content-type": "application/json",
+            Authorization: JSON.parse(localStorage.getItem("userToken")),
+          },
+        }
+      );
       let result = await response.json();
       if (result) {
         dispatch(fetchProduct());
