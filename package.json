@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "react-toastify": "^10.0.5"
-  },
-  "devDependencies": {
-    "process": "^0.11.10"
-  }
-}
